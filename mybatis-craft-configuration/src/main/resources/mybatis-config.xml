@@ -7,6 +7,16 @@
     <!-- 引入外部配置文件 -->
     <properties resource="jdbc.properties" />
 
+    <!-- 为实体类设置别名 -->
+    <typeAliases>
+        <!-- <typeAlias type="org.mybatis.configuration.example.entity.User" alias="User" /> -->
+        <!-- 如果不显式设置别名, 那么其别名就是实体类的类名, 并且不分大小写 -->
+        <!-- <typeAlias type="org.mybatis.configuration.example.entity.User" /> -->
+
+        <!-- 也可以批量设置别名 -->
+        <package name="org.mybatis.configuration.example.entity"/>
+    </typeAliases>
+
     <!-- 多环境配置, default的值为配置环境的id -->
     <environments default="development">
         <!--
