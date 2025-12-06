@@ -12,6 +12,7 @@
         <module>mybatis-craft-getting-started</module>
         <module>mybatis-craft-configuration</module>
         <module>mybatis-craft-query</module>
+        <module>mybatis-craft-advanced</module>
     </modules>
 
     <properties>
