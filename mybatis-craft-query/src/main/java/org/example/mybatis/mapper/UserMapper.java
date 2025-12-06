@@ -6,6 +6,12 @@ import org.example.mybatis.entity.User;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * User Mapper
+ *
+ * @author xianyu
+ * @since 2025-12-06
+ */
 public interface UserMapper {
 
     List<User> selectAll();
@@ -34,5 +40,17 @@ public interface UserMapper {
      * @return 用户
      */
     User selectByMultiParams(@Param("username") String username, @Param("password") String password);
+
+    int count();
+
+    User fuzzyQuery(String username);
+
+    /**
+     * 根据多个用户ID批量删除用户信息
+     *
+     * @param ids 用户ID集合
+     * @return 影响的行数
+     */
+    int batchDeleteUserByIds(@Param("ids") List<Long> ids);
 
 }

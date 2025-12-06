@@ -28,4 +28,37 @@
         SELECT * FROM t_user WHERE username = #{username} AND password = #{password};
     </select>
 
+    <select id="count" resultType="_int">
+        SELECT COUNT(*) FROM t_user;
+    </select>
+
+    <select id="fuzzyQuery" resultType="User">
+        <!-- SELECT * FROM t_user WHERE username LIKE '%${username}%'; -->
+        <!-- SELECT * FROM t_user WHERE username LIKE "%"#{username}"%"; -->
+        <!-- SELECT * FROM t_user WHERE username LIKE CONCAT('%', #{username}, '%'); -->
+
+        <bind name="pattern" value="'%' + username + '%'"/>
+        SELECT * FROM t_user WHERE username LIKE #{pattern};
+    </select>
+
+
+    <!-- 批量删除用户信息 -->
+    <!--
+        注意事项:
+            1. 长度限制: MySQL默认IN子句最多支持1000个元素, 如果超过1000个元素则会报错; 解决方案 - 分批删除, 每批次1000条
+            2. 空集合处理: 若ids为空, 如果不处理, 可能会导致错误的SQL语句生成或删除全表的数据; 通过下面的判断处理, 空集合时会执行 DELETE FROM t_user WHERE 1=0;
+                这样就不会删除任何数据, 并且也避免了语法错误;
+    -->
+    <delete id="batchDeleteUserByIds">
+        DELETE FROM t_user
+        <where>
+            <if test="ids != null and ids.size() > 0">
+                id IN
+                <foreach collection="ids" item="id" separator="," open="(" close=")">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </delete>
+
 </mapper>

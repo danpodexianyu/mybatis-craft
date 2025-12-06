@@ -46,4 +46,16 @@ class UserMapperTest {
         User user = userMapper.selectByMultiParams("张三", "zhangsan123");
         log.info("{}", user);
     }
+
+    @Test
+    void count() {
+        int count = userMapper.count();
+        log.info("the number of users: {}", count);
+    }
+
+    @Test
+    void fuzzyQuery() {
+        User user = userMapper.fuzzyQuery("张三");
+        log.info("Fuzzy Query Result: {}", user);
+    }
 }
