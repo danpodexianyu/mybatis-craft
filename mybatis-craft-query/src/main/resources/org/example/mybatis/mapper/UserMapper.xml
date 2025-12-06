@@ -52,12 +52,17 @@
     <delete id="batchDeleteUserByIds">
         DELETE FROM t_user
         <where>
-            <if test="ids != null and ids.size() > 0">
-                id IN
-                <foreach collection="ids" item="id" separator="," open="(" close=")">
-                    #{id}
-                </foreach>
-            </if>
+            <choose>
+                <when test="ids != null and ids.size() > 0">
+                    id IN
+                    <foreach collection="ids" item="id" separator="," open="(" close=")">
+                        #{id}
+                    </foreach>
+                </when>
+                <otherwise>
+                    1=0
+                </otherwise>
+            </choose>
         </where>
     </delete>
 

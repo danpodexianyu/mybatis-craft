@@ -58,4 +58,10 @@ class UserMapperTest {
         User user = userMapper.fuzzyQuery("张三");
         log.info("Fuzzy Query Result: {}", user);
     }
+
+    @Test
+    void batchDeleteUserByIds() {
+        int count = userMapper.batchDeleteUserByIds(List.of());
+        log.info("deleted rows: {}", count);
+    }
 }
