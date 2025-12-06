@@ -20,4 +20,12 @@
         <!-- SELECT * FROM t_user WHERE username = '${username}'; -->
     </select>
 
+    <select id="selectByMap" resultType="User">
+        SELECT * FROM t_user WHERE username = #{username} AND password = #{password};
+    </select>
+
+    <select id="selectByMultiParams" resultType="User">
+        SELECT * FROM t_user WHERE username = #{username} AND password = #{password};
+    </select>
+
 </mapper>

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 
 class UserMapperTest {
 
@@ -31,6 +32,18 @@ class UserMapperTest {
     @Test
     void selectByUsername() {
         User user = userMapper.selectByUsername("张三");
+        log.info("{}", user);
+    }
+
+    @Test
+    void selectByMap() {
+        User user = userMapper.selectByMap(Map.of("username", "张三", "password", "zhangsan123"));
+        log.info("{}", user);
+    }
+
+    @Test
+    void selectByMultiParams() {
+        User user = userMapper.selectByMultiParams("张三", "zhangsan123");
         log.info("{}", user);
     }
 }
