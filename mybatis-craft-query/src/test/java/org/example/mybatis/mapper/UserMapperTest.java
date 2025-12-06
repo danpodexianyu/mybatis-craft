@@ -27,4 +27,10 @@ class UserMapperTest {
         List<User> users = userMapper.selectAll();
         users.forEach(user -> log.info("{}", user));
     }
+
+    @Test
+    void selectByUsername() {
+        User user = userMapper.selectByUsername("张三");
+        log.info("{}", user);
+    }
 }

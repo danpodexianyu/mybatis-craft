@@ -8,4 +8,16 @@
         SELECT * FROM t_user;
     </select>
 
+    <select id="selectByUsername" resultType="User">
+        <!-- #{} 实际上是使用占位符 -->
+        <!-- ${} 实际上是字符串拼接, 可能会有SQL注入的问题,
+            因此如果没有特殊的要求, 一般情况下, 都建议使用 #{} -->
+        SELECT * FROM t_user WHERE username = #{username};
+
+        <!-- 因为没有指定参数的名称, 所以这里的参数名称可以和接口中定义的参数名称不一致 -->
+        <!-- SELECT * FROM t_user WHERE username = #{a}; -->
+
+        <!-- SELECT * FROM t_user WHERE username = '${username}'; -->
+    </select>
+
 </mapper>
