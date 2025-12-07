@@ -1,6 +1,7 @@
 package org.example.mybatis.advanced.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.example.mybatis.advanced.entity.User;
 
 import java.util.List;
 
@@ -19,5 +20,13 @@ public interface UserMapper {
      * @return 影响的行数
      */
     int batchDeleteUserByIds(@Param("ids") List<Long> ids);
+
+    /**
+     * 添加用户, 返回自增主键
+     *
+     * @param user 添加的用户信息
+     * @return 影响的行数
+     */
+    int save(User user);
 
 }
